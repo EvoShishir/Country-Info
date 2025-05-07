@@ -26,6 +26,10 @@ class Command(BaseCommand):
             timezone_list = country.get("timezones", [])
             timezone = timezone_list[0] if timezone_list else None
             flag = country.get("flag")
+            region = country.get("region")
+
+            language_dict = country.get("languages", {})
+            languages = ", ".join(language_dict.values()) if language_dict else None
 
             CountryModel.objects.create(
                 name=name,
@@ -34,6 +38,8 @@ class Command(BaseCommand):
                 population=population,
                 timezone=timezone,
                 flag=flag,
+                region=region,
+                languages=languages,
             )
 
         self.stdout.write(self.style.SUCCESS("Country data fetched and stored."))

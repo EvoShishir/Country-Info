@@ -1,5 +1,6 @@
 from django.urls import path
 from .views import (
+    SignUpView,
     CountryListView,
     CountryDetailView,
     CreateCountryView,
@@ -11,6 +12,7 @@ from .views import (
 )
 
 urlpatterns = [
+    path("sign-up", SignUpView.as_view()),
     path("countries", CountryListView.as_view()),
     path("countries/<int:pk>", CountryDetailView.as_view()),
     path("countries/create", CreateCountryView.as_view()),
